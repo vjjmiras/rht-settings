@@ -1,0 +1,35 @@
+# .rhtrc
+#
+# Don't forget to add ". .rhtrc" to your $HOME/.bashrc
+#
+
+# Environment
+
+# Set this variable to 1 for to automatically load ocp4.config settings
+OPENSHIFT_COURSE=1
+OPENSHIFT_PS1='[$(kubectl_context)]\n[\u@\h \W]\$ '
+STANDARD_PS1='[\u@\h \W]\$ '
+ 
+# Auxiliary function to get last command
+last_command() {
+  sed -n  -e 's,^\ *[0-9]*\ *\(.*\)$,\1,g' -e '$p' <(history)
+}
+
+# Auxiliary function to get current k8s context
+kubectl_context() {
+  sed -n -e 's,^\*\ *\([^\ ]*\)\ *.*,\1,p'  <(kubectl config get-contexts  --no-headers)
+}
+
+# Prompts customization
+PROMPT_COMMAND='echo -e "\n[ !! ~> $(last_command) ]"'
+
+# Repeat keys disabled for ROLE access to VMs
+gsettings set org.gnome.desktop.peripherals.keyboard repeat false
+
+# OCP4 access configuration
+if [[ OPENSHIFT_COURSE -eq 1 ]] && [[ -f /usr/local/etc/ocp4.config ]]; then
+  source /usr/local/etc/ocp4.config 
+  PS1="${OPENSHIFT_PS1}"
+fi
+
+
