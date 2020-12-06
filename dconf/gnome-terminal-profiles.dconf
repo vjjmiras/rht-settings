@@ -1,0 +1,10 @@
+[/]
+list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', '9d16e7a7-6c57-4b76-b3c0-86aeb1badefd']
+default='9d16e7a7-6c57-4b76-b3c0-86aeb1badefd'
+
+[:9d16e7a7-6c57-4b76-b3c0-86aeb1badefd]
+exit-action='hold'
+visible-name='Instructor'
+scrollback-unlimited=true
+use-system-font=false
+font='Monospace 18'
